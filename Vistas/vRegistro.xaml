@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="exploralocalfinal.Vistas.vRegistro"
+             Title="vRegistro">
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="20"
+            Padding="30"
+            VerticalOptions="Center"
+            HorizontalOptions="FillAndExpand">
+
+            <Entry
+                x:Name="txtNombreRegistro"
+                Placeholder="Nombre"
+                FontSize="Medium"
+                VerticalOptions="Start"/>
+
+            <Entry
+                x:Name="txtApellidoRegistro"
+                Placeholder="Apellido"
+                FontSize="Medium"
+                VerticalOptions="Start"/>
+
+            <Entry
+                x:Name="txtCorreoRegistro"
+                Placeholder="Correo electrónico"
+                Keyboard="Email"
+                FontSize="Medium"
+                VerticalOptions="Start"/>
+
+            <Entry
+                x:Name="txtContrasenaRegistro"
+                Placeholder="Contraseña"
+                IsPassword="True"
+                FontSize="Medium"
+                VerticalOptions="Start"/>
+
+            <Button
+                x:Name="btnRegistrar"
+                Text="Registrar"
+                FontAttributes="Bold"
+                BackgroundColor="#0078d7"
+                TextColor="White"
+                Clicked="btnRegistrar_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

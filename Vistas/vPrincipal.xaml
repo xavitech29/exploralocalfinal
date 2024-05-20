@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="exploralocalfinal.Vistas.vPrincipal"
+             Title="vPrincipal">
+    <Grid RowDefinitions="250, *, 150, *, 40">
+        <Frame Margin="15,30,15,30"
+               CornerRadius="15">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="White" Offset="0.1"/>
+                    <GradientStop Color="Blue" Offset="0.1"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+
+            <StackLayout>
+                <Label Text="Explora Local" 
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+
+        </Frame>
+
+        <FlexLayout Grid.Row="1" JustifyContent="SpaceAround" AlignItems="Center">
+            <Frame BackgroundColor="#eef1fd" CornerRadius="25" WidthRequest="80" HeightRequest="80" Margin="5">
+                <Image Source="mapa.png" Aspect="AspectFill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="Mapa" Tapped="Mapa_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+
+            <Frame BackgroundColor="#eef1fd" CornerRadius="25" WidthRequest="80" HeightRequest="80" Margin="5">
+                <Image Source="lugar.png" Aspect="AspectFill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="ListaLugares" Tapped="ListaLugares_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+        </FlexLayout>
+
+        <Frame Grid.Row="2" BackgroundColor="#eef1fd" CornerRadius="25" WidthRequest="80" HeightRequest="80" HorizontalOptions="Center">
+            <Image Source="configuracion.png" Aspect="AspectFill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="Configuracion" Tapped="Configuracion_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Frame>
+
+        <FlexLayout Grid.Row="3" JustifyContent="SpaceAround" AlignItems="Center">
+            <Frame BackgroundColor="#eef1fd" CornerRadius="25" WidthRequest="80" HeightRequest="80" Margin="5">
+                <Image Source="detalle.png" Aspect="AspectFill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="DetalleLugar" Tapped="DetalleLugar_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+
+            <Frame BackgroundColor="#eef1fd" CornerRadius="25" WidthRequest="80" HeightRequest="80" Margin="5">
+                <Image Source="resenas.png" Aspect="AspectFill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="ResenaUsuario" Tapped="ResenaUsuario_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+        </FlexLayout>
+
+    </Grid>
+</ContentPage>
