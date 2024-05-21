@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="exploralocalfinal.Vistas.vActualizarEliminarResena"
+             Title="vActualizarEliminarResena">
+    <StackLayout Padding="20">
+        <Label Text="ID Reseña:" FontSize="Medium" />
+        <Entry x:Name="txtIdResena" IsReadOnly="True" />
+        <Label Text="Escribe tu reseña:"
+            FontSize="Medium"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+        <Editor x:Name="txtResena"
+             HeightRequest="150"
+             Placeholder="Escribe aquí tu reseña"
+             FontSize="Medium"
+             VerticalOptions="CenterAndExpand"
+             HorizontalOptions="FillAndExpand"
+             Margin="0,20,0,20" />
+        <Button Text="Actualizar"
+             Clicked="Actualizar_Clicked"
+             VerticalOptions="End"
+             HorizontalOptions="Center" />
+        <Button Text="Eliminar"
+             Clicked="Eliminar_Clicked"
+             VerticalOptions="End"
+             HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>

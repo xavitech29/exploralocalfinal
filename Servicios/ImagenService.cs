@@ -51,7 +51,19 @@ namespace exploralocalfinal.Servicios
             }
         }
 
-       
+        public async Task<bool> ActualizarImagenAsync(int id, byte[] nuevaImagenBytes)
+        {
+            // Implementa la lógica para actualizar la imagen en tu servicio aquí
+            await Task.Delay(0); // Esto es temporal, reemplázalo con tu lógica real
+            return true;
+        }
+
+        public async Task<bool> EliminarImagenAsync(int id)
+        {
+            // Implementa la lógica para eliminar la imagen en tu servicio aquí
+            await Task.Delay(0); // Esto es temporal, reemplázalo con tu lógica real
+            return true;
+        }
 
     }
 }

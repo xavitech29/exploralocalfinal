@@ -10,7 +10,8 @@ namespace exploralocalfinal.Servicios
     public interface IResenaRepository
     {
         Task<Resena> GuardarResenaAsync(Resena resena);
-    
-       
+        Task<bool> ActualizarResenaAsync(int idResena, string nuevoTexto);
+        Task<bool> EliminarResenaAsync(int idResena);
+
     }
 }

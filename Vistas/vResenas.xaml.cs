@@ -19,6 +19,12 @@ public partial class vResenas : ContentPage, INotifyPropertyChanged
             OnPropertyChanged(nameof(ResenasConImagenes));
         }
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadData(); // Cargar los datos cada vez que se muestre la página
+    }
     public vResenas()
     {
         InitializeComponent();
@@ -46,4 +52,30 @@ public partial class vResenas : ContentPage, INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
+    private async void BtnImagen_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var resena = button.BindingContext as ResenaImagenModel;
+
+        if (resena != null)
+        {
+            int id = resena.id_imagen;
+            await Navigation.PushAsync(new vActualizarEliminarImagen(id));
+        }
+    }
+
+    private async void BtnResena_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var resena = button.BindingContext as ResenaImagenModel;
+
+        if (resena != null)
+        {
+            int id = resena.id_resena;
+            string texto = resena.texto;
+            await Navigation.PushAsync(new vActualizarEliminarResena(id, texto));
+        }
+    }
+
 }

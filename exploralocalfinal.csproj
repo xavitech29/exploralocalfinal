@@ -72,6 +72,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Vistas\vActualizarEliminarImagen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Vistas\vActualizarEliminarResena.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Vistas\vConfiguracion.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

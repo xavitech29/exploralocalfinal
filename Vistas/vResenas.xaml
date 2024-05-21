@@ -14,13 +14,26 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
                             <!-- Primera columna: texto -->
-                            <Label Grid.Column="0" Text="{Binding texto}" FontSize="12" />
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{Binding texto}" FontSize="12" />
+                            </StackLayout>
 
                             <!-- Segunda columna: URL de la imagen -->
-                            <Image Grid.Column="1" Source="{Binding url_imagen}" HeightRequest="50" WidthRequest="50" Aspect="AspectFill" />
+                            <StackLayout Grid.Column="1">
+                                <Image Source="{Binding url_imagen}" HeightRequest="50" WidthRequest="50" Aspect="AspectFill" />
+                            </StackLayout>
+
+                            <!-- Tercera columna: Botones de acción -->
+                            <StackLayout Grid.Column="2" Orientation="Horizontal">
+                                
+                                <Button Text="Reseña" Clicked="BtnResena_Clicked" CommandParameter="{Binding Id}" />
+                                <Button Text="Imagen" Clicked="BtnImagen_Clicked" CommandParameter="{Binding Id}" />
+                                
+                            </StackLayout>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
