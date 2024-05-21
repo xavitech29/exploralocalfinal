@@ -10,9 +10,9 @@ namespace exploralocalfinal.Modelos
     {
         public int id_resena { get; set; }
         public string texto { get; set; }
-        public ImagenUrl Imagen { get; set; }
-        public int IdImagen { get; set; }
-        public string UrlImagen { get; set; }
+        //public ImagenUrl Imagen { get; set; }
+        //public int IdImagen { get; set; }
+        //public string UrlImagen { get; set; }
 
     }
 }

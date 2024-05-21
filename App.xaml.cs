@@ -8,7 +8,7 @@ namespace exploralocalfinal
         {
             InitializeComponent();
             
-            MainPage = new NavigationPage(new Vistas.vSubirImagen());
+            MainPage = new NavigationPage(new Vistas.vResenas());
         }
     }
 }

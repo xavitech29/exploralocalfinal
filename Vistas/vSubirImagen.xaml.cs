@@ -91,7 +91,7 @@ public partial class vSubirImagen : ContentPage
 
                 using (var httpClient = new HttpClient())
                 {
-                    var serverResponse = await httpClient.PostAsync("http://192.168.0.18/exploralocal/api/insertar_img.php", postContent);
+                    var serverResponse = await httpClient.PostAsync("http://192.168.0.18/exploralocal/api/imagen.php", postContent);
 
                     if (serverResponse.IsSuccessStatusCode)
                     {

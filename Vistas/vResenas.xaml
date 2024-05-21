@@ -3,18 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="exploralocalfinal.Vistas.vResenas"
              Title="vResenas">
-    <ScrollView>
-        <StackLayout Margin="20">
-            <CollectionView x:Name="ResenaCollectionView">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Margin="10">
-                            <Label Text="{Binding texto}" />
-                            <Image Source="{Binding Imagen.url_imagen}" WidthRequest="100" HeightRequest="100" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
-    </ScrollView>
+
+    <StackLayout>
+        <Label Text="Reseñas" FontSize="24" HorizontalOptions="Center" Margin="0,10,0,10" />
+        <ListView ItemsSource="{Binding ResenasConImagenes}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Primera columna: texto -->
+                            <Label Grid.Column="0" Text="{Binding texto}" FontSize="12" />
+
+                            <!-- Segunda columna: URL de la imagen -->
+                            <Image Grid.Column="1" Source="{Binding url_imagen}" HeightRequest="50" WidthRequest="50" Aspect="AspectFill" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
