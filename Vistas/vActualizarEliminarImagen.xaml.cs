@@ -6,15 +6,53 @@ public partial class vActualizarEliminarImagen : ContentPage
 {
     private string _imageUrl;
     private byte[] _imageBytes;
-    private readonly IImagenRepository _imagenService;
-    private int _imagenId;
-    public vActualizarEliminarImagen(int imagenId)
-    {
-        InitializeComponent();
-        UploadedImageView.IsVisible = false;
-        _imagenService = new ImagenService();
-        _imagenId = imagenId;
+    
+    //private string _imgUrl;
 
+    private readonly IImagenRepository _imagenRepository;
+    private int _imagenId;
+    private string _imagenUrl;
+
+    public vActualizarEliminarImagen(int imagenId, string imagenUrl)
+    {
+
+        /* InitializeComponent();
+         UploadedImageView.IsVisible = false;
+         _imagenRepository = new ImagenService();
+         txtIdImagen.Text = _imagenId.ToString();// Asignar la id_imagen al Entry txtIdImagen
+
+         _imagenId = imagenId; // Asignar el valor de imagenId a la propiedad _imagenId
+         _imgUrl = imgUrl;
+
+         // Mostrar la imagen seleccionada en la vista previa
+         LoadImageFromUrl(imgUrl);*/
+
+        InitializeComponent();
+        _imagenRepository = new ImagenService();
+        _imagenId = imagenId;
+        _imagenUrl = imagenUrl;
+
+        txtIdImagen.Text = _imagenId.ToString();
+        ImageUrlLabel.Text = _imagenUrl;
+        LoadImageFromUrl(imagenUrl);
+
+    }
+
+    private async void LoadImageFromUrl(string imageUrl)
+    {
+        try
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var stream = await httpClient.GetStreamAsync(imageUrl);
+                SelectedImagePreview.Source = ImageSource.FromStream(() => stream);
+                //SelectedImagePreview.IsVisible = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
     }
 
     private async void PickPhotoAsync(object sender, EventArgs e)
@@ -70,39 +108,42 @@ public partial class vActualizarEliminarImagen : ContentPage
         }
     }
 
-    private async void UploadImageAsync(object sender, EventArgs e)
+    private async void ActualizarImagenAsync(object sender, EventArgs e)
     {
         if (_imageBytes != null)
         {
             try
             {
-                _imageUrl = await _imagenService.SubirImagenAsync(_imageBytes);
-                ImageUrlLabel.Text = $"URL: {_imageUrl}";
+                string nuevaUrlImagen = await _imagenRepository.SubirImagenAsync(_imageBytes);
 
-                var postData = new Dictionary<string, string>
-                    {
-                        { "image_url", _imageUrl }
-                    };
-
-                var postContent = new FormUrlEncodedContent(postData);
-
-                using (var httpClient = new HttpClient())
+                if (!string.IsNullOrEmpty(nuevaUrlImagen))
                 {
-                    var serverResponse = await httpClient.PostAsync("http://192.168.0.18/exploralocal/api/imagen.php", postContent);
-
-                    if (serverResponse.IsSuccessStatusCode)
+                    if (_imagenId != 0)
                     {
-                        await DisplayAlert("Exito", $"Imagen subida correctamente.", "OK");
-                        //await DisplayAlert("Success", $"Image uploaded successfully. URL: {_imageUrl}", "OK");
-                        // Show the uploaded image
-                        var uploadedImageStream = await httpClient.GetStreamAsync(_imageUrl);
-                        UploadedImageView.Source = ImageSource.FromStream(() => uploadedImageStream);
-                        UploadedImageView.IsVisible = true;
+                        // Si existe un ID de imagen, actualizamos la imagen
+                        var exito = await _imagenRepository.ActualizarImagenAsync(_imagenId, nuevaUrlImagen);
+
+                        if (exito)
+                        {
+                            await DisplayAlert("Éxito", "Imagen actualizada correctamente", "OK");
+                            ImageUrlLabel.Text = $"URL: {nuevaUrlImagen}";
+                            _imagenUrl = nuevaUrlImagen;
+                            await Navigation.PopAsync();
+                        }
+                        else
+                        {
+                            await DisplayAlert("Error", "Ocurrió un error al actualizar la imagen", "OK");
+                        }
                     }
                     else
                     {
-                        await DisplayAlert("Error", "Error al cargar imagen al servidor", "OK");
+                        // Si no hay un ID de imagen, mostramos un mensaje de error
+                        await DisplayAlert("Error", "No se puede actualizar la imagen sin un ID de imagen", "OK");
                     }
+                }
+                else
+                {
+                    await DisplayAlert("Error", "La subida de la imagen falló. Inténtalo de nuevo.", "OK");
                 }
             }
             catch (Exception ex)
@@ -112,24 +153,36 @@ public partial class vActualizarEliminarImagen : ContentPage
         }
         else
         {
-            await DisplayAlert("Error", "Por favor, selecciona o toma una imagen antes de subir.", "OK");
+            await DisplayAlert("Error", "Por favor, selecciona o toma una imagen antes de subirla.", "OK");
         }
     }
-    private async void ActualizarImageAsync(object sender, EventArgs e)
+
+
+    private async void Eliminar_Clicked(object sender, EventArgs e)
     {
-        var stream = new MemoryStream(_imageBytes);
-        var updatedImage = ImageSource.FromStream(() => stream);
+        if (_imagenId != 0)
+        {
+            var exito = await _imagenRepository.EliminarImagenAsync(_imagenId);
 
-        // Implementa la lógica para actualizar la imagen en tu servicio aquí
+            if (exito)
+            {
+                await DisplayAlert("Éxito", "Imagen eliminada correctamente", "OK");
+                await Navigation.PopAsync();
 
-        await DisplayAlert("Actualizar", "Implementa la lógica para actualizar la imagen aquí", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Error", "Ocurrió un error al eliminar la imagen", "OK");
+            }
+        }
+        else
+        {
+            await DisplayAlert("Error", "Primero guarda una imagen para eliminarla", "OK");
+        }
     }
-
-    private async void EliminarImageAsync(object sender, EventArgs e)
-    {
-        // Implementa la lógica para eliminar la imagen en tu servicio aquí
-
-        await DisplayAlert("Eliminar", "Implementa la lógica para eliminar la imagen aquí", "OK");
-    }
+    
 
 }
+
+
+

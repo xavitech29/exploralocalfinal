@@ -38,7 +38,7 @@ public partial class vRegistro : ContentPage
 
         if (resultado)
         {
-            await DisplayAlert("{Exito", "Registro exitoso", "OK");
+            await DisplayAlert("Exito", "Registro exitoso", "OK");
             // Aqui puedes navegar a otra p?gina o realizar alguna otra accion despues del registro exitoso
         }
         else

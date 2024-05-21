@@ -53,7 +53,7 @@ public partial class vLogin : ContentPage
             {
                 var jsonResponse = await response.Content.ReadAsStringAsync();
                 var usuario = JsonConvert.DeserializeObject<Usuario>(jsonResponse);
-                await Navigation.PushAsync(new vPrincipal());
+                await Navigation.PushAsync(new vPrincipal(usuario));
             }
             else
             {

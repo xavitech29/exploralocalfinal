@@ -4,15 +4,22 @@
              x:Class="exploralocalfinal.Vistas.vActualizarEliminarImagen"
              Title="vActualizarEliminarImagen">
     <ScrollView>
-        <StackLayout Margin="20">
+        <StackLayout Padding="20">
+            <Label Text="ID Imagen:" FontSize="Medium" />
+            <Entry x:Name="txtIdImagen" IsReadOnly="True" />
             <Image x:Name="SelectedImagePreview" WidthRequest="200" HeightRequest="200" Margin="0,10" />
             <Label x:Name="ImageUrlLabel" Text="La URL de la imagen aparecerá aquí" />
             <Button Text="Seleccionar Imagen" Clicked="PickPhotoAsync" Margin="20,10"/>
             <Button Text="Tomar Foto" Clicked="TakePhotoAsync" Margin="20,10"/>
-            <Button Text="Subir" Clicked="UploadImageAsync" Margin="20,10"/>
-            <Button Text="Actualizar" Clicked="ActualizarImageAsync" Margin="20,10"/>
-            <Button Text="Eliminar" Clicked="EliminarImageAsync" Margin="20,10"/>
+            <Button Text="Actualizar Imagen" Clicked="ActualizarImagenAsync" Margin="20,10"/>
+            <!--<Button Text="Eliminar" Clicked="Eliminar_Clicked" Margin="20,10"/>-->
             <Image x:Name="UploadedImageView" WidthRequest="200" HeightRequest="200" Margin="0,10" />
         </StackLayout>
+
+       
+        
+  
+
+
     </ScrollView>
 </ContentPage>

@@ -12,5 +12,7 @@ namespace exploralocalfinal.Modelos
         public string texto { get; set; }
         public int id_imagen { get; set; }
         public string url_imagen { get; set; }
+        
+
     }
 }

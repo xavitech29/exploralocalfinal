@@ -60,11 +60,13 @@ public partial class vResenas : ContentPage, INotifyPropertyChanged
 
         if (resena != null)
         {
-            int id = resena.id_imagen;
-            await Navigation.PushAsync(new vActualizarEliminarImagen(id));
+            
+            int id_img = resena.id_imagen;
+            string url_img = resena.url_imagen;
+            await Navigation.PushAsync(new vActualizarEliminarImagen(id_img, url_img));
         }
     }
-
+   
     private async void BtnResena_Clicked(object sender, EventArgs e)
     {
         var button = sender as Button;

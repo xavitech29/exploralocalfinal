@@ -4,6 +4,7 @@
              x:Class="exploralocalfinal.Vistas.vPrincipal"
              Title="vPrincipal">
     <Grid RowDefinitions="250, *, 150, *, 40">
+        <Label x:Name="lblNombreApellido" TextColor="Black" FontSize="Medium" HorizontalOptions="Center"/>
         <Frame Margin="15,30,15,30"
                CornerRadius="15">
             <Frame.Background>

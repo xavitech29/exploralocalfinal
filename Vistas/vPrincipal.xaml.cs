@@ -1,12 +1,23 @@
+using exploralocalfinal.Modelos;
+
 namespace exploralocalfinal.Vistas;
 
 public partial class vPrincipal : ContentPage
 {
-	public vPrincipal()
+    private Usuario _usuario;
+    public vPrincipal(Usuario usuario)
 	{
 		InitializeComponent();
-	}
-
+        _usuario = usuario;
+        MostrarDatosUsuario();
+    }
+    private void MostrarDatosUsuario()
+    {
+        if (_usuario != null)
+        {
+            lblNombreApellido.Text = $"Bienvenido, {_usuario.nombre} {_usuario.apellido}";
+        }
+    }
     private async void Mapa_Tapped(object sender, TappedEventArgs e)
     {
         await Navigation.PushAsync(new vMapa());
@@ -19,7 +30,7 @@ public partial class vPrincipal : ContentPage
 
     private async void DetalleLugar_Tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushAsync(new vDetalleLugar());
+        await Navigation.PushAsync(new vResenas());
     }
 
     private async void ResenaUsuario_Tapped(object sender, TappedEventArgs e)

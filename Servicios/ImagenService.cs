@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -13,11 +14,9 @@ namespace exploralocalfinal.Servicios
     public class ImagenService : IImagenRepository
     {
         private const string ImgBBApiKey = "a5c7aa99467462d70c608c55b59a7e0a";
-        
-        //añadido
         private readonly HttpClient _httpClient;
 
-        //añadido
+ 
         public ImagenService()
         {
             _httpClient = new HttpClient();
@@ -51,19 +50,53 @@ namespace exploralocalfinal.Servicios
             }
         }
 
-        public async Task<bool> ActualizarImagenAsync(int id, byte[] nuevaImagenBytes)
+        public async Task<bool> ActualizarImagenAsync(int id, string nuevaUrlImagen)
         {
-            // Implementa la lógica para actualizar la imagen en tu servicio aquí
-            await Task.Delay(0); // Esto es temporal, reemplázalo con tu lógica real
-            return true;
+            try
+            {
+                var data = new Dictionary<string, string>
+        {
+            { "id_imagen", id.ToString() },
+            { "url_imagen", nuevaUrlImagen }
+        };
+                var content = new FormUrlEncodedContent(data);
+
+                var response = await _httpClient.PutAsync("imagen.php", content);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al actualizar la imagen: {ex.Message}");
+            }
         }
 
-        public async Task<bool> EliminarImagenAsync(int id)
+
+        public async Task<bool> EliminarImagenAsync(int idImagen)
         {
-            // Implementa la lógica para eliminar la imagen en tu servicio aquí
-            await Task.Delay(0); // Esto es temporal, reemplázalo con tu lógica real
-            return true;
+            var httpClient = new HttpClient();
+            var uri = new Uri($"http://192.168.0.18/exploralocal/api/imagen.php?id_imagen={idImagen}");
+
+            try
+            {
+                var response = await httpClient.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true; // Eliminación exitosa
+                }
+                else
+                {
+                    return false; // Error al eliminar
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al eliminar la imagen: {ex.Message}");
+            }
         }
+
+
+
 
     }
 }

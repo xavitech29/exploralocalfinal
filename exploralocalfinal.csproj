@@ -57,6 +57,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Vistas\vDetalleLugar.xaml.cs" />
+	  <Compile Remove="Vistas\vListaLugares.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Vistas\vDetalleLugar.xaml" />
+	  <MauiXaml Remove="Vistas\vListaLugares.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\lugares.jpg" />
 	</ItemGroup>
 
@@ -79,12 +89,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Vistas\vConfiguracion.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Vistas\vDetalleLugar.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Vistas\vListaLugares.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Vistas\vLogin.xaml">
